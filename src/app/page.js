@@ -258,8 +258,8 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [formStatus, setFormStatus] = useState("idle"); // idle, submitting, success
-
+  const [formStatus, setFormStatus] = useState("idle"); // idle, submitting, success, error
+  const [formError, setFormError] = useState(null);
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -820,6 +820,7 @@ export default function Home() {
             onSubmit={async (e) => {
               e.preventDefault();
               setFormStatus("submitting");
+              setFormError(null);
 
               const form = e.target;
               const data = new FormData(form);
@@ -836,15 +837,42 @@ export default function Home() {
                   },
                 );
 
+                const result = await response.json();
+
                 if (response.ok) {
                   setFormStatus("success");
                   form.reset();
-                  setTimeout(() => setFormStatus("idle"), 3000);
+                  setTimeout(() => {
+                    setFormStatus("idle");
+                    setFormError(null);
+                  }, 3000);
                 } else {
                   setFormStatus("error");
+                  // Extract specific error message from Formspree
+                  if (result.errors && result.errors.length > 0) {
+                    const errorMsg = result.errors
+                      .map((err) => {
+                        const field =
+                          err.field === "_replyto" || err.field === "email"
+                            ? "Email"
+                            : err.field === "message"
+                              ? "Message"
+                              : err.field === "name"
+                                ? "Name"
+                                : err.field === "subject"
+                                  ? "Subject"
+                                  : err.field;
+                        return `${err.message[0].toUpperCase()}${err.message.slice(1)}`;
+                      })
+                      .join(", ");
+                    setFormError(errorMsg);
+                  } else {
+                    setFormError("Something went wrong. Please try again.");
+                  }
                 }
               } catch (error) {
                 setFormStatus("error");
+                setFormError("Network error. Please check your connection.");
               }
             }}
             className="space-y-6"
@@ -902,7 +930,7 @@ export default function Home() {
               />
             </div>
 
-            <div className="pt-6">
+            <div className="pt-6 space-y-3">
               <button
                 type="submit"
                 disabled={
@@ -911,7 +939,9 @@ export default function Home() {
                 className={`w-full py-4 rounded-full font-medium flex items-center justify-center gap-2 transition-all ${
                   formStatus === "success"
                     ? "bg-[#00ff88] text-black"
-                    : "bg-white text-black hover:bg-[#00ff88]"
+                    : formStatus === "error"
+                      ? "bg-red-500 text-white hover:bg-red-600"
+                      : "bg-white text-black hover:bg-[#00ff88]"
                 }`}
               >
                 {formStatus === "submitting" ? (
@@ -920,12 +950,22 @@ export default function Home() {
                   <>
                     Message Sent <Sparkles className="w-4 h-4" />
                   </>
+                ) : formStatus === "error" ? (
+                  <>
+                    Try Again <X className="w-4 h-4" />
+                  </>
                 ) : (
                   <>
                     Send Message <Send className="w-4 h-4" />
                   </>
                 )}
               </button>
+
+              {formStatus === "error" && formError && (
+                <p className="text-center text-red-400 text-sm animate-pulse">
+                  {formError}
+                </p>
+              )}
             </div>
           </form>
         </div>
