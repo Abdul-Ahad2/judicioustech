@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+.touch-manipulation {
+  touch-action: manipulation;
+}
