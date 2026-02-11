@@ -3,7 +3,6 @@
 // Next.js 14 + Tailwind CSS + Framer Motion
 
 "use client";
-import GridBackground from "./components/GridBackground";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { Google_Sans, Inter } from "next/font/google";
@@ -60,74 +59,72 @@ const inter = Google_Sans({
   weight: ["400", "500", "600"],
 });
 
-// --- Data Constants ---
-
 const projects = [
   {
     id: 1,
-    title: "Lumina Finance",
-    category: "Fintech",
+    title: "Wine Ecommerce Platform",
+    category: "Ecommerce",
     description:
-      "Next-generation banking interface with real-time crypto trading and AI portfolio analysis.",
-    image:
-      "https://images.unsplash.com/photo-1642543492481-44e81e3914a7?q=80&w=2560&auto=format&fit=crop",
-    tags: ["Next.js 14", "Three.js", "PostgreSQL"],
+      "A modern ecommerce platform with seamless shopping experience, secure payments, and advanced product recommendations.",
+    image: "./1.png",
+    tags: ["Next.js", "Stripe", "MongoDB"],
     color: "#00ff88",
+    link: "https://postfamiliar.com/",
   },
   {
     id: 2,
-    title: "Aether Design",
-    category: "Creative",
+    title: "Virgin Active",
+    category: "Fitness",
     description:
-      "Award-winning agency site featuring WebGL transitions and dynamic content loading.",
-    image:
-      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop",
-    tags: ["React", "GSAP", "Sanity CMS"],
-    color: "#00d4ff",
+      "Dynamic gym website with class schedules, membership management, and interactive fitness tracking.",
+    image: "/2.png",
+    tags: ["React", "Node.js", "PostgreSQL"],
+    color: "#00ff88",
+    link: "https://www.virginactive.co.uk/",
   },
   {
     id: 3,
-    title: "Pulse Fitness",
-    category: "Mobile App",
+    title: "Plagiarism Detection System",
+    category: "Education",
     description:
-      "AI-powered fitness companion with pose detection and personalized workout plans.",
-    image:
-      "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?q=80&w=2574&auto=format&fit=crop",
-    tags: ["React Native", "TensorFlow", "AWS"],
-    color: "#ff6b6b",
+      "Advanced plagiarism detection system using AI to scan documents and ensure academic integrity.",
+    image: "/3.png",
+    tags: ["FastAPI", "Next.js", "AWS"],
+    color: "#00ff88",
+    link: "https://plagiarism-detection-frontend.vercel.app",
   },
   {
     id: 4,
-    title: "Nexus Chat",
-    category: "SaaS",
+    title: "Blooming Flowers 3D",
+    category: "Creative",
     description:
-      "End-to-end encrypted messaging platform with AI assistants and WebRTC video.",
-    image:
-      "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=2574&auto=format&fit=crop",
-    tags: ["Flutter", "Firebase", "Redis"],
-    color: "#a855f7",
+      "Interactive 3D model of flowers with realistic animations and customizable designs for botanical visualization.",
+    image: "/4.png",
+    tags: ["Three.js", "React", "Blender"],
+    color: "#00ff88",
+    link: "https://www.behance.net/durhaider",
   },
   {
     id: 5,
-    title: "Nexus Chat",
-    category: "SaaS",
+    title: "Behind the Blackboard",
+    category: "Gaming",
     description:
-      "End-to-end encrypted messaging platform with AI assistants and WebRTC video.",
-    image:
-      "https://plus.unsplash.com/premium_photo-1687854992749-e15cba89631d?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Z2FtZXN8ZW58MHx8MHx8fDA%3D",
-    tags: ["Flutter", "Firebase", "Redis"],
-    color: "#a855f7",
+      "An immersive puzzle game set in a mysterious school, featuring hidden secrets and thrilling challenges.",
+    image: "./5.png",
+    tags: ["Unity", "C#", "Photon"],
+    color: "#00ff88",
+    link: "https://www.youtube.com/watch?v=Nt_NGaWRw4U",
   },
   {
     id: 6,
-    title: "Nexus Chat",
-    category: "SaaS",
+    title: "Gym Passport",
+    category: "Fitness App",
     description:
-      "End-to-end encrypted messaging platform with AI assistants and WebRTC video.",
-    image:
-      "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    tags: ["Flutter", "Firebase", "Redis"],
-    color: "#a855f7",
+      "Dynamic gym app with class schedules, membership management, and interactive fitness tracking.",
+    image: "/6.png",
+    tags: ["Flutter", "Firebase", "Machine Learning"],
+    color: "#00ff88",
+    link: "https://gympassport.pk/",
   },
 ];
 
@@ -319,6 +316,7 @@ export default function Home() {
       {/* Noise Texture Overlay */}
       <div className="fixed inset-0 z-1 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-100 contrast-150" />
       {/* Navigation */}
+
       <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-[#050505]/80 border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
@@ -403,7 +401,6 @@ export default function Home() {
         ref={heroRef}
         className="relative min-h-screen flex items-center justify-center pt-20"
       >
-        <GridBackground />
         <motion.div
           style={{ opacity: heroOpacity, y: heroY }}
           className="relative z-10 max-w-5xl mx-auto px-6 text-center"
@@ -547,7 +544,7 @@ export default function Home() {
                     alt={project.title}
                     className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                   />
-                  <div className="absolute inset-0 bg-linear-to-t from-[#0a0a0a] via-[#0a0a0a]/20 to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black via-black/80 to-transparent" />
                 </div>
 
                 <div className="absolute bottom-0 left-0 right-0 p-8">
@@ -582,12 +579,13 @@ export default function Home() {
                       ))}
                     </div>
                     <div className="flex gap-3 opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
-                      <button className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-colors">
-                        <Github className="w-4 h-4" />
-                      </button>
-                      <button className="w-10 h-10 rounded-full bg-[#00ff88] text-black flex items-center justify-center hover:bg-white transition-colors">
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        className="w-10 h-10 rounded-full bg-[#00ff88] text-black flex items-center justify-center hover:bg-white transition-colors"
+                      >
                         <ExternalLink className="w-4 h-4" />
-                      </button>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -807,7 +805,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-32 relative z-10 bg-white/[0.02]">
+      <section id="contact" className="py-32 relative z-10 bg-white/2">
         <div className="max-w-3xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-sm font-medium text-[#00ff88] uppercase tracking-widest mb-4">
