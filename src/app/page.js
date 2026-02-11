@@ -652,7 +652,7 @@ export default function Home() {
                 {/* Placeholder for image - replace src with actual photo */}
                 <div className="absolute inset-0 flex items-center justify-center text-white/20">
                   <img
-                    src="/me-2.png" // Replace with actual image path
+                    src="/abdulahad.webp" // Replace with actual image path
                     width={100}
                     alt="Abdul Ahad"
                     className="w-full h-full object-cover"
@@ -685,7 +685,7 @@ export default function Home() {
               <div className="aspect-square w-full mb-6 rounded-xl bg-linear-to-br from-white/10 to-white/5 overflow-hidden relative">
                 <div className="absolute inset-0 flex items-center justify-center text-white/20">
                   <img
-                    src="/arham.png" // Replace with actual image path
+                    src="/arham.webp" // Replace with actual image path
                     width={100}
                     height={100}
                     alt="Arham Jamil"
@@ -708,7 +708,7 @@ export default function Home() {
               </p>
             </motion.div>
 
-            {/* Member 3: 3D Modeller */}
+            {/* Member 3: 3D Artist */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -718,7 +718,13 @@ export default function Home() {
             >
               <div className="aspect-square w-full mb-6 rounded-xl bg-linear-to-br from-white/10 to-white/5 overflow-hidden relative">
                 <div className="absolute inset-0 flex items-center justify-center text-white/20">
-                  <Box className="w-16 h-16" />
+                  <img
+                    src="/haider.webp" // Replace with actual image path
+                    width={100}
+                    height={100}
+                    alt="Durr Haider"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div className="absolute inset-0 bg-[#00ff88]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
@@ -727,7 +733,7 @@ export default function Home() {
                 Durr Haider
               </h3>
               <p className="text-[#00ff88] text-sm font-medium mb-3">
-                3D Modeller
+                3D Artist
               </p>
               <p className="text-sm text-white/40 leading-relaxed">
                 Blender & Maya expert. Creates cinematic environments, character
