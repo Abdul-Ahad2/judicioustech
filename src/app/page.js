@@ -124,7 +124,7 @@ const projects = [
     image: "/6.png",
     tags: ["Flutter", "Firebase", "Machine Learning"],
     color: "#00ff88",
-    link: "https://gympassport.pk/",
+    link: "https://apps.apple.com/au/app/gym-passport/id1534995333",
   },
 ];
 
