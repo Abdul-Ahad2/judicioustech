@@ -190,7 +190,7 @@ const services = [
   },
   {
     title: "Mobile Apps",
-    description: "Native and cross-platform applications.",
+    description: "Real-time multiplayer games with scalable backends.",
     icon: Box,
   },
   {
@@ -515,20 +515,20 @@ export default function Home() {
         </div>
       </section>
       {/* Projects Section */}
-      <section id="work" className="py-32 relative z-10 bg-white/2">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+      <section id="work" className="py-16 md:py-32 relative z-10 bg-white/2">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16 gap-6">
             <div>
-              <h2 className="text-sm font-medium text-[#00ff88] uppercase tracking-widest mb-4">
+              <h2 className="text-xs md:text-sm font-medium text-[#00ff88] uppercase tracking-widest mb-4">
                 Selected Work
               </h2>
-              <p className="text-3xl sm:text-4xl font-light text-white/90">
+              <p className="text-2xl md:text-3xl lg:text-4xl font-light text-white/90">
                 Featured Projects
               </p>
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
             {projects.map((project, index) => (
               <motion.div
                 key={project.id}
@@ -547,8 +547,8 @@ export default function Home() {
                   <div className="absolute inset-0 bg-linear-to-t from-black via-black/80 to-transparent" />
                 </div>
 
-                <div className="absolute bottom-0 left-0 right-0 p-8">
-                  <div className="flex items-center gap-3 mb-4">
+                <div className="absolute bottom-0 left-0 right-0 p-5 md:p-8">
+                  <div className="flex items-center gap-3 mb-3 md:mb-4">
                     <span
                       className="px-3 py-1 rounded-full text-xs font-medium border"
                       style={{
@@ -560,15 +560,15 @@ export default function Home() {
                       {project.category}
                     </span>
                   </div>
-                  <h3 className="text-2xl font-medium text-white mb-2 group-hover:text-[#00ff88] transition-colors">
+                  <h3 className="text-xl md:text-2xl font-medium text-white mb-2 group-hover:text-[#00ff88] transition-colors">
                     {project.title}
                   </h3>
-                  <p className="text-white/50 text-sm mb-6 line-clamp-2">
+                  <p className="text-white/50 text-sm mb-4 md:mb-6 line-clamp-2">
                     {project.description}
                   </p>
 
                   <div className="flex items-center justify-between">
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 flex-wrap">
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
@@ -578,10 +578,11 @@ export default function Home() {
                         </span>
                       ))}
                     </div>
-                    <div className="flex gap-3 opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
+                    <div className="flex gap-3 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-0 md:translate-y-2 group-hover:translate-y-0">
                       <a
                         href={project.link}
                         target="_blank"
+                        rel="noopener noreferrer"
                         className="w-10 h-10 rounded-full bg-[#00ff88] text-black flex items-center justify-center hover:bg-white transition-colors"
                       >
                         <ExternalLink className="w-4 h-4" />
